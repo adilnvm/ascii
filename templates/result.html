@@ -1,0 +1,24 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art Result</title>
+</head>
+<body>
+
+    <h1>Original Image</h1>
+    <img src="{{ image_path }}" alt="Original Image">
+
+    
+
+    <h1>ASCII Art</h1>
+    <pre>{{ ascii_art_content|safe }}</pre>
+
+    <a href="{{ url_for('static', filename='ascii_art.txt') }}" target="_blank">
+        <button>Open ASCII Art</button>
+    </a>
+
+</body>
+</html>
