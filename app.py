@@ -35,7 +35,7 @@ def download_ascii():
     return send_file(ascii_art_path, as_attachment=True)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=4747)
 
 app = Flask(__name__, static_url_path='/static')
 
