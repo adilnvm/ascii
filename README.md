@@ -55,8 +55,7 @@ ascii/
     python app.py
     ```
 4 **The app will start on:**
-
-    ```bash
+    ```
     http://127.0.0.1:4747
     ```
 
@@ -64,7 +63,6 @@ ascii/
 
 
 6 **Your ASCII image will be saved in same folder**
-
-    ```bash
+    ```
     ../ascii/ascii_art.txt
     ```    
