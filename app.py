@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from flask import send_file
 import pywhatkit as kt
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 
 @app.route("/")
 def index():
@@ -14,20 +14,22 @@ def upload():
     if "imageInput" in request.files:
         image = request.files["imageInput"]
         
-        # Save the uploaded image
         image_path = "uploaded_image.jpg"
         image.save(image_path)
 
-        # Convert the image to ASCII art
-        ascii_art_path = "ascii_art.txt"
-        kt.image_to_ascii_art(image_path, ascii_art_path)
-        print(f"ASCII art file created at: {ascii_art_path}")
+        ascii_art_base = "ascii_art"
+        kt.image_to_ascii_art(image_path, ascii_art_base)
 
-        
+        ascii_art_path = ascii_art_base + ".txt"
 
-        return render_template("result.html", image_path=image_path, ascii_art_path=ascii_art_path)
+        # Read ASCII content
+        with open(ascii_art_path, "r") as file:
+            ascii_content = file.read()
+
+        return render_template("result.html", image_path=image_path, ascii_art_content=ascii_content)
     else:
         return "No image received."
+
 
 @app.route("/download_ascii")
 def download_ascii():
@@ -37,7 +39,7 @@ def download_ascii():
 if __name__ == "__main__":
     app.run(debug=True, port=4747)
 
-app = Flask(__name__, static_url_path='/static')
+# app = Flask(__name__, static_url_path='/static')
 
 
 print("hi")
